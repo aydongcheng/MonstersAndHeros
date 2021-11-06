@@ -13,6 +13,14 @@ public class Cell {
         this.type = type;
     }
 
+    public boolean isAccessible() {
+        return isAccessible;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     private boolean isAccessible;
     private String type;
 }

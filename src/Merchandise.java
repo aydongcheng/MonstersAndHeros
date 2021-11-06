@@ -40,6 +40,11 @@ public abstract class Merchandise {
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return name.equals(((Merchandise) obj).getName());
+    }
+
     private String name;
     private int minLevel;
     private int price;

@@ -2,30 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ed0a904-83c4-45f6-a282-c10d95d1ea91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Armor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ArmorCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CellCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/CommenCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Fightable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FileReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Hero.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MAHBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Market.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MarketCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Merchandise.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MerchandiseCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Monster.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/NonAccessibleCell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Potion.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/PotionCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ProbabilityCellCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ProbabilityMAHCellCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/WeanponCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Weapon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Inventory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MonsterCreator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CommenCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommenCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hero.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MarketCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MarketCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Merchandise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Merchandise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Monster.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1636124971645</updated>
-      <workItem from="1636124979024" duration="17120000" />
+      <workItem from="1636124979024" duration="26705000" />
     </task>
     <servers />
   </component>
