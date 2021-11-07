@@ -30,13 +30,6 @@ public abstract class Spell extends Merchandise{
         return attributes;
     }
 
-    public void display(){
-        ArrayList<StringBuilder> attributes = getDisplayLines();
-        for(StringBuilder stringBuilder: attributes){
-            System.out.println(stringBuilder);
-        }
-    }
-
     protected abstract void specialEffect(Monster monster);
 
     public int getDamage() {

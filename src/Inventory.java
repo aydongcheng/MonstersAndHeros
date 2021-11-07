@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Inventory {
     public Inventory(){
@@ -53,7 +55,9 @@ public class Inventory {
     }
 
     public void displayPotions(int index){
-        Displayer.listDisplay(new ArrayList<Potion>(potions.keySet()),"Potions",index);
+        ArrayList<String> strings = new ArrayList<>();
+        potions.forEach((k, v) -> strings.add(k.getName()+" * "+v));
+        Displayer.listDisplay(strings,"Potions",index);
     }
 
     public void displayArmors(int index){

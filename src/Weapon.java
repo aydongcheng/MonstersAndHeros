@@ -26,13 +26,6 @@ public class Weapon extends  Merchandise{
         return attributes;
     }
 
-    public void display(){
-        ArrayList<StringBuilder> attributes = getDisplayLines();
-        for(StringBuilder stringBuilder: attributes){
-            System.out.println(stringBuilder);
-        }
-    }
-
     public int getDamage() {
         return damage;
     }

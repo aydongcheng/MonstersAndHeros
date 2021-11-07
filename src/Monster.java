@@ -142,6 +142,11 @@ public class Monster implements Fightable, LevelUp{
         this.level = level;
     }
 
+    @Override
+    public String toString() {
+        return getName();
+    }
+
     private boolean isFaint;
     private int hp;
     private String name;

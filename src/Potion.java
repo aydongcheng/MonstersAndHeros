@@ -26,13 +26,6 @@ public class Potion extends Merchandise {
         return attributes;
     }
 
-    public void display(){
-        ArrayList<StringBuilder> attributes = getDisplayLines();
-        for(StringBuilder stringBuilder: attributes){
-            System.out.println(stringBuilder);
-        }
-    }
-
     public int getAttributeIncrease() {
         return attributeIncrease;
     }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Hero implements Fightable, LevelUp, Displayable{
+public class Hero implements Fightable, LevelUp{
     public Hero(){}
 
     public Hero(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExp){
@@ -326,6 +326,11 @@ public class Hero implements Fightable, LevelUp, Displayable{
 
     public Spell getSpell() {
         return spell;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     private String name;

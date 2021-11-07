@@ -1,4 +1,6 @@
-public abstract class Merchandise implements Displayable{
+import java.util.ArrayList;
+
+public abstract class Merchandise {
     public Merchandise(){}
 
     public Merchandise(String name, int minLevel, int price, String type){
@@ -38,6 +40,17 @@ public abstract class Merchandise implements Displayable{
 
     private void setType(String type) {
         this.type = type;
+    }
+
+    public abstract ArrayList<StringBuilder> getDisplayLines();
+
+    public void display(){
+        Displayer.displayLines(getDisplayLines());
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
     @Override

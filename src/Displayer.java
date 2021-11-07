@@ -33,7 +33,7 @@ public class Displayer {
     }
 
 
-    public static <T extends Displayable> void listDisplay(ArrayList<T> items, String itemName, int startIndex, int lineLength, int itemLength){
+    public static <T> void listDisplay(ArrayList<T> items, String itemName, int startIndex, int lineLength, int itemLength){
         int index = startIndex;
         StringBuilder s = new StringBuilder(itemName+" :");
         if(s.length()<itemLength)
@@ -46,7 +46,7 @@ public class Displayer {
                 stringBuilder.append("\n");
                 stringBuilder.append(" ".repeat(itemLength));
             }
-            s = new StringBuilder(index + "."+t.getName());
+            s = new StringBuilder(index + "."+t.toString());
             if(s.length()<itemLength)
                 s.append(" ".repeat(Math.max(0, itemLength - s.length())));
             stringBuilder.append(s);
@@ -55,7 +55,7 @@ public class Displayer {
         System.out.println(stringBuilder);
     }
 
-    public static <T extends Displayable> void listDisplay(ArrayList<T> items, String itemName, int startIndex){
+    public static <T> void listDisplay(ArrayList<T> items, String itemName, int startIndex){
         listDisplay(items,itemName,startIndex,5,30);
     }
 

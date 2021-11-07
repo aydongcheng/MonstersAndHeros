@@ -47,41 +47,6 @@ public class Market {
         }
     }
 
-    public ArrayList<Weapon> getWeapons() {
-        return weapons;
-    }
-
-    public ArrayList<Armor> getArmors() {
-        return armors;
-    }
-
-    public ArrayList<Potion> getPotions() {
-        return potions;
-    }
-
-    public ArrayList<Spell> getSpells() {
-        return spells;
-    }
-
-    public Merchandise buy(String type, int index){
-        switch (type){
-            case "Weapon":
-                return weapons.get(index);
-            case "Armor":
-                return armors.get(index);
-            case "Spell":
-                return spells.get(index);
-            case "Potion":
-                return potions.get(index);
-            default:
-                return null;
-        }
-    }
-
-    public <T extends Displayable> void displayItems(int index, ArrayList<T> items){
-        Displayer.listDisplay(items, items.getClass().toString().split(" ")[1],index);
-    }
-
     public void displayPotions(int index){
         Displayer.listDisplay(potions,"Potions",index);
     }

@@ -26,10 +26,6 @@ public class Armor extends Merchandise{
         return attributes;
     }
 
-    public void display(){
-        Displayer.displayLines(getDisplayLines());
-    }
-
     public int getDamageReduction() {
         return damageReduction;
     }

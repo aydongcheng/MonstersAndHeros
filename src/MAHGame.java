@@ -39,7 +39,7 @@ public class MAHGame {
 
     private void printInstruction(){
         System.out.println("+---------------------------------------+");
-        System.out.println("|move: w a s d; Information: i; Quit : q|");
+        System.out.println("|Move: w a s d; Information: i; Quit: q |");
         System.out.println("|H: Heroes;  N: inaccessible;  M: Market|");
         System.out.println("|C: Wild                                |");
         System.out.println("+---------------------------------------+");
@@ -89,6 +89,9 @@ public class MAHGame {
                 equipHero();
                 return "info";
             }
+            else if(input.equals("q")){
+                System.exit(0);
+            }
         }
     }
 
@@ -109,6 +112,7 @@ public class MAHGame {
                 System.out.println("Do you want to buy this merchandise for one of your heros?(y/others)");
                 input = scan.next();
                 if(input.equals("y")){
+                    System.out.println("Which hero wants to buy equipments?");
                     team.displayHerosName();
                     int indeOfHero = Displayer.chooseList(team.getHeroes().size());
                     Hero hero = team.getHeroes().get(indeOfHero);
@@ -143,10 +147,10 @@ public class MAHGame {
 
     private void equipHero(){
         while (true) {
-            System.out.println("Do you want to equip your heros?(y/others)");
+            System.out.println("Do you want to check heroes' inventory?(y/others)");
             String input = scan.next();
             if(input.equals("y")) {
-                System.out.println("Which hero needs to change equipment?");
+                System.out.println("Which heroes' inventory do you want to check?");
                 team.displayHerosName();
                 int indeOfHero = Displayer.chooseList(team.getHeroes().size());
                 Hero hero = team.getHeroes().get(indeOfHero);
@@ -154,13 +158,17 @@ public class MAHGame {
                 if(NumEquipInInventory==0)
                     System.out.println("Hero " + hero.getName() + " doesn't have any equipment.");
                 else {
-                    System.out.println("Select the equipment you need to equip or use.");
-                    int indexOfEquipment = Displayer.chooseList(NumEquipInInventory);
-                    Merchandise merchandise = hero.getInventory().displayItems(indexOfEquipment);
-                    System.out.println("Do you want to equip or use this merchandise?(y/others)");
+                    System.out.println("Does hero "+ hero.getName()+" want to change his/her equipment or use potions?(y/n)");
                     input = scan.next();
-                    if (input.equals("y")) {
-                        hero.equipOrUseMerchandise(merchandise);
+                    if(input.equals("y")) {
+                        System.out.println("Select the equipment hero want to equip or use.");
+                        int indexOfEquipment = Displayer.chooseList(NumEquipInInventory);
+                        Merchandise merchandise = hero.getInventory().displayItems(indexOfEquipment);
+                        System.out.println("Do you want to equip or use this merchandise?(y/others)");
+                        input = scan.next();
+                        if (input.equals("y")) {
+                            hero.equipOrUseMerchandise(merchandise);
+                        }
                     }
                 }
             }
