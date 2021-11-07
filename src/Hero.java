@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Hero implements Fightable{
+public class Hero implements Fightable, LevelUp, Displayable{
     public Hero(){}
 
     public Hero(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExp){
@@ -12,13 +12,21 @@ public class Hero implements Fightable{
         setDexterity(dexterity);
         setStartingMoney(startingMoney);
         setStartingExp(startingExp);
-        setExp(100);
+        setMoney(startingMoney);
+        setExp(startingExp);
         setLevel(1);
+        setHp(100);
         setFaint(false);
         weapon = null;
         armor = null;
         spell = null;
         inventory = new Inventory();
+    }
+
+    public Hero(String[] attributes){
+        this(attributes[0], Integer.parseInt(attributes[1]), Integer.parseInt(attributes[2]),
+                Integer.parseInt(attributes[3]), Integer.parseInt(attributes[4]), Integer.parseInt(attributes[5]),
+                Integer.parseInt(attributes[6]));
     }
 
     @Override
@@ -37,11 +45,12 @@ public class Hero implements Fightable{
             return 0;
         int actualDamage = damage;
         if(armor != null)
-            actualDamage = Math.max(damage - armor.getDamageReduction(), 0);
+            actualDamage = Math.max(damage - ((int) (armor.getDamageReduction()*0.01)), 0);
         if(actualDamage>getHp()){
             actualDamage =getHp();
-            setHp(0);
+            setHp(getLevel()*100/2);
             setFaint(true);
+            System.out.println("Hero "+ getName() +" is dead");
         }
         else
             setHp(getHp()-actualDamage);
@@ -54,6 +63,154 @@ public class Hero implements Fightable{
             return (int) spell.getDamage() + (getDexterity() / 10000) * spell.getDamage();
         }
         else return 0;
+    }
+
+    public boolean getRewards(int MonsterLevel, int exp){
+        addMoney(MonsterLevel*100);
+        setHp((int) Math.ceil(getHp()*1.1));
+        setMana((int) Math.ceil(getMana()*1.1));
+        return addExp(exp);
+    }
+
+    public boolean getRewards(int MonsterLevel){
+        return getRewards(MonsterLevel,2);
+    }
+
+    public void addMoney(int money){
+        setMoney(getMoney()+money);
+    }
+
+    public boolean addExp(int exp){
+        if(getExp()+exp > getLevel()*10){
+            setExp(getExp()+exp-getLevel()*10);
+            setLevel(getLevel()+1);
+            levelUpTo(getLevel());
+            return true;
+        }
+        else {
+            setExp(getExp()+exp);
+            return false;
+        }
+    }
+
+    @Override
+    public void levelUpTo(int Level) {
+        setStrength((int) Math.ceil(getStrength()*Math.pow((1.05),(Level - getLevel()))));
+        setAgility((int) Math.ceil(getAgility()*Math.pow((1.05),(Level - getLevel()))));
+        setDexterity((int) Math.ceil(getDexterity()*Math.pow((1.05),(Level - getLevel()))));
+        setLevel(Level);
+        setHp(getLevel()*100);
+    }
+
+    public boolean buyMerchandise(Merchandise merchandise){
+        if(merchandise.getMinLevel() > getLevel() || getMoney() < merchandise.getPrice())
+            return false;
+        else {
+            switch (merchandise.getType()){
+                case "Weapon":
+                    inventory.addWeapon((Weapon) merchandise);break;
+                case "Armor":
+                    inventory.addArmor((Armor) merchandise);break;
+                case "Spell":
+                    inventory.addSpell((Spell) merchandise);break;
+                case "Potion":
+                    inventory.addPotion((Potion) merchandise);break;
+            }
+            setMoney(getMoney()-merchandise.getPrice());
+            return true;
+        }
+    }
+
+    public void sellMerchandise(Merchandise merchandise){
+        switch (merchandise.getType()){
+            case "weapon":
+                inventory.sellWeapon((Weapon) merchandise);break;
+            case "armor":
+                inventory.sellArmor((Armor) merchandise);break;
+            case "Spell":
+                inventory.sellSpell((Spell) merchandise);break;
+            case "Potion":
+                inventory.sellPotion((Potion) merchandise);break;
+        }
+        addMoney(merchandise.getPrice()/2);
+    }
+
+    public void consumePotion(Potion potion){
+        int increase = potion.getAttributeIncrease();
+        String[] attributes = potion.getAttributes();
+        for(String attribute: attributes){
+            switch (attribute){
+                case "Health":
+                    setHp(getHp()+increase);break;
+                case "Strength":
+                    setStrength(getStrength()+increase);break;
+                case "Mana":
+                    setMana(getMana()+increase);break;
+                case "Dexterity":
+                    setDexterity(getDexterity()+increase);break;
+                case "Agility":
+                    setAgility(getAgility()+increase);break;
+                case "All":
+                    setHp(getHp()+increase);
+                    setStrength(getStrength()+increase);
+                    setMana(getMana()+increase);
+                    setDexterity(getDexterity()+increase);
+                    setAgility(getAgility()+increase);
+                    break;
+            }
+        }
+        getInventory().sellPotion(potion);
+    }
+
+    public void equipOrUseMerchandise(Merchandise merchandise){
+        if(merchandise instanceof Weapon)
+            setWeapon((Weapon) merchandise);
+        else if(merchandise instanceof Armor)
+            setArmor((Armor) merchandise);
+        else if(merchandise instanceof Spell)
+            setSpell((Spell) merchandise);
+        else
+            consumePotion((Potion) merchandise);
+    }
+
+    public ArrayList<StringBuilder> getDisplayLines(){
+        ArrayList<StringBuilder> attributes = new ArrayList<>();
+
+        attributes.add(new StringBuilder("Name: " + getName()));
+
+        attributes.add(new StringBuilder("Level: " + getLevel()));
+
+        attributes.add(new StringBuilder("EXP: " + getExp()));
+
+        attributes.add(new StringBuilder("Money: " + getMoney()));
+
+        attributes.add(new StringBuilder("HP: " + getHp()));
+
+        attributes.add(new StringBuilder("Mana: " + getMana()));
+
+        attributes.add(new StringBuilder("Strength: " + getStrength()));
+
+        attributes.add(new StringBuilder("Agility: " + getAgility()));
+
+        attributes.add(new StringBuilder("Dexterity: " + getDexterity()));
+
+        if(weapon!=null)
+            attributes.add(new StringBuilder("Weapon: " + weapon.getName()));
+
+        if(armor!=null)
+            attributes.add(new StringBuilder("Armor: " + armor.getName()));
+
+        if(spell!=null)
+            attributes.add(new StringBuilder("Spell: " + spell.getName()));
+
+        return attributes;
+    }
+
+    public void display(){
+        ArrayList<StringBuilder> attributes = getDisplayLines();
+        for(StringBuilder stringBuilder: attributes){
+            System.out.println(stringBuilder);
+        }
     }
 
     public String getName() {
@@ -76,7 +233,7 @@ public class Hero implements Fightable{
         return strength;
     }
 
-    private void setStrength(int strength) {
+    protected void setStrength(int strength) {
         this.strength = strength;
     }
 
@@ -84,7 +241,7 @@ public class Hero implements Fightable{
         return agility;
     }
 
-    private void setAgility(int agility) {
+    protected void setAgility(int agility) {
         this.agility = agility;
     }
 
@@ -92,7 +249,7 @@ public class Hero implements Fightable{
         return dexterity;
     }
 
-    private void setDexterity(int dexterity) {
+    protected void setDexterity(int dexterity) {
         this.dexterity = dexterity;
     }
 
@@ -150,6 +307,34 @@ public class Hero implements Fightable{
 
     public void setFaint(boolean faint) {
         isFaint = faint;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public void setArmor(Armor armor) {
+        this.armor = armor;
+    }
+
+    public void setSpell(Spell spell) {
+        this.spell = spell;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public Armor getArmor() {
+        return armor;
+    }
+
+    public Spell getSpell() {
+        return spell;
     }
 
     private String name;

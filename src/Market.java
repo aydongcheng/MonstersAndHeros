@@ -1,7 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class Market {
     public Market(){
@@ -11,6 +9,8 @@ public class Market {
         List<String> lines = fileReader.readFile("Weaponry");
         weanponCreator = new WeanponCreator();
         for(int i = 1; i < lines.size(); i++){
+            if(lines.get(i).equals(""))
+                break;
             weapons.add((Weapon) weanponCreator.createMercandise(lines.get(i)));
         }
 
@@ -19,6 +19,8 @@ public class Market {
         lines = fileReader.readFile("Armory");
         armorCreator = new ArmorCreator();
         for(int i = 1; i < lines.size(); i++){
+            if(lines.get(i).equals(""))
+                break;
             armors.add((Armor) armorCreator.createMercandise(lines.get(i)));
         }
 
@@ -27,7 +29,103 @@ public class Market {
         lines = fileReader.readFile("Potions");
         potionCreator = new PotionCreator();
         for(int i = 1; i < lines.size(); i++){
+            if(lines.get(i).equals(""))
+                break;
             potions.add((Potion) potionCreator.createMercandise(lines.get(i)));
+        }
+
+        //create spells
+        spells = new ArrayList<>();
+        for(String fileName : new String[]{"IceSpells","FireSpells","LightningSpells"}) {
+            lines = fileReader.readFile(fileName);
+            spellCreator = new SpellCreator();
+            for (int i = 1; i < lines.size(); i++) {
+                if(lines.get(i).equals(""))
+                    break;
+                spells.add((Spell) spellCreator.createMercandise(lines.get(i)+"  "+fileName));
+            }
+        }
+    }
+
+    public ArrayList<Weapon> getWeapons() {
+        return weapons;
+    }
+
+    public ArrayList<Armor> getArmors() {
+        return armors;
+    }
+
+    public ArrayList<Potion> getPotions() {
+        return potions;
+    }
+
+    public ArrayList<Spell> getSpells() {
+        return spells;
+    }
+
+    public Merchandise buy(String type, int index){
+        switch (type){
+            case "Weapon":
+                return weapons.get(index);
+            case "Armor":
+                return armors.get(index);
+            case "Spell":
+                return spells.get(index);
+            case "Potion":
+                return potions.get(index);
+            default:
+                return null;
+        }
+    }
+
+    public <T extends Displayable> void displayItems(int index, ArrayList<T> items){
+        Displayer.listDisplay(items, items.getClass().toString().split(" ")[1],index);
+    }
+
+    public void displayPotions(int index){
+        Displayer.listDisplay(potions,"Potions",index);
+    }
+
+    public void displayArmors(int index){
+        Displayer.listDisplay(armors,"Armors",index);
+    }
+
+    public void displaySpells(int index){
+        Displayer.listDisplay(spells,"Spells",index);
+    }
+
+    public void displayWeapons(int index){
+        Displayer.listDisplay(weapons,"Weapons",index);
+    }
+
+    public int display(){
+        int index = 0;
+        displayWeapons(index);
+        index += weapons.size();
+        displayArmors(index);
+        index += armors.size();
+        displaySpells(index);
+        index += spells.size();
+        displayPotions(index);
+        return index+ potions.size();
+    }
+
+    public Merchandise displayItems(int index){
+        if(index < weapons.size()){
+            weapons.get(index).display();
+            return weapons.get(index);
+        }
+        else if(index < weapons.size() + armors.size()){
+            armors.get(index).display();
+            return armors.get(index);
+        }
+        else if(index < weapons.size() + armors.size() + spells.size()){
+            spells.get(index).display();
+            return spells.get(index);
+        }
+        else {
+            potions.get(index).display();
+            return potions.get(index);
         }
     }
 
@@ -37,4 +135,6 @@ public class Market {
     private ArmorCreator armorCreator;
     private ArrayList<Potion> potions;
     private PotionCreator potionCreator;
+    private ArrayList<Spell> spells;
+    private SpellCreator spellCreator;
 }

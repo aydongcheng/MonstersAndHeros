@@ -3,7 +3,7 @@ import java.util.Map;
 public class ProbabilityMAHCellCreator extends ProbabilityCellCreator{
     public ProbabilityMAHCellCreator(){}
 
-    public ProbabilityMAHCellCreator(Map<String ,Float> probability){
+    public ProbabilityMAHCellCreator(Map<String ,Double> probability){
         super(probability);
     }
 
@@ -22,7 +22,7 @@ public class ProbabilityMAHCellCreator extends ProbabilityCellCreator{
                 cell = new CommenCell();
                 break;
             default:
-                cell = new Cell();
+                cell = null;
         }
         return cell;
     }

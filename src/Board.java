@@ -27,6 +27,10 @@ public class Board {
         return length;
     }
 
+    public Cell[][] getCells() {
+        return cells;
+    }
+
     private int width;
     private int length;
     protected Cell[][] cells;

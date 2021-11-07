@@ -1,4 +1,4 @@
-public abstract class Merchandise {
+public abstract class Merchandise implements Displayable{
     public Merchandise(){}
 
     public Merchandise(String name, int minLevel, int price, String type){

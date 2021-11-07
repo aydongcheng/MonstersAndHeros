@@ -1,11 +1,13 @@
+import java.util.ArrayList;
 import java.util.Random;
 
-public class Monster implements Fightable{
+public class Monster implements Fightable, LevelUp{
     public Monster(){}
 
     public Monster(String name, int initLevel, int damage, int defense, int dodgeChance){
         setName(name);
         setInitLevel(initLevel);
+        setLevel(initLevel);
         setDamage(damage);
         setDefense(defense);
         setDodgeChance(dodgeChance);
@@ -13,9 +15,23 @@ public class Monster implements Fightable{
         setFaint(false);
     }
 
+    public Monster(String[] attributes){
+        this(attributes[0], Integer.parseInt(attributes[1]), Integer.parseInt(attributes[2]),
+                Integer.parseInt(attributes[3]), Integer.parseInt(attributes[4]));
+    }
+
+    @Override
+    public void levelUpTo(int Level) {
+        setDamage((int) Math.ceil(damage*Math.pow((1.05),(Level - getInitLevel()))));
+        setDefense((int) Math.ceil(defense*Math.pow((1.05),(Level - getInitLevel()))));
+        setDodgeChance((int) Math.ceil(dodgeChance*Math.pow((1.05),(Level - getInitLevel()))));
+        setLevel(Level);
+        setHp(getLevel()*100);
+    }
+
     @Override
     public int attack() {
-        return getDamage();
+        return (int) (getDamage()*0.05);
     }
 
     @Override
@@ -26,17 +42,43 @@ public class Monster implements Fightable{
         if(i <= Math.ceil(getDodgeChance()*0.01))
             return 0;
 
-        int actualDamage = Math.max(damage - getDefense(), 0);
+        int actualDamage = Math.max(damage - ((int) (getDefense()*0.01)), 0);
 
         if(getHp() <= actualDamage) {
             actualDamage = getHp();
             setFaint(true);
             setHp(0);
+            System.out.println("Monster "+ getName() +" is dead");
         }
         else
             setHp(getHp()-actualDamage);
 
         return actualDamage;
+    }
+
+    public ArrayList<StringBuilder> getDisplayLines(){
+        ArrayList<StringBuilder> attributes = new ArrayList<>();
+
+        attributes.add(new StringBuilder("Name: " + getName()));
+
+        attributes.add(new StringBuilder("Level: " + getLevel()));
+
+        attributes.add(new StringBuilder("HP: " + getHp()));
+
+        attributes.add(new StringBuilder("Damage: " + getDamage()));
+
+        attributes.add(new StringBuilder("Defense: " + getDefense()));
+
+        attributes.add(new StringBuilder("Dodge Chance: " + getDodgeChance()));
+
+        return attributes;
+    }
+
+    public void display(){
+        ArrayList<StringBuilder> attributes = getDisplayLines();
+        for(StringBuilder stringBuilder: attributes){
+            System.out.println(stringBuilder);
+        }
     }
 
     public int getInitLevel() {
@@ -51,7 +93,7 @@ public class Monster implements Fightable{
         return damage;
     }
 
-    private void setDamage(int damage) {
+    protected void setDamage(int damage) {
         this.damage = damage;
     }
 
@@ -59,7 +101,7 @@ public class Monster implements Fightable{
         return defense;
     }
 
-    private void setDefense(int defense) {
+    protected void setDefense(int defense) {
         this.defense = defense;
     }
 
@@ -67,7 +109,7 @@ public class Monster implements Fightable{
         return dodgeChance;
     }
 
-    private void setDodgeChance(int dodgeChance) {
+    protected void setDodgeChance(int dodgeChance) {
         this.dodgeChance = dodgeChance;
     }
 
@@ -95,6 +137,14 @@ public class Monster implements Fightable{
         isFaint = faint;
     }
 
+    public int getLevel() {
+        return level;
+    }
+
+    private void setLevel(int level) {
+        this.level = level;
+    }
+
     private boolean isFaint;
     private int hp;
     private String name;
@@ -102,4 +152,5 @@ public class Monster implements Fightable{
     private int damage;
     private int defense;
     private int dodgeChance;
+    private int level;
 }

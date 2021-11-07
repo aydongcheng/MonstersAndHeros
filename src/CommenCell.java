@@ -2,19 +2,19 @@ public class CommenCell extends Cell{
     public CommenCell(){
         super("commen",true);
         if(Math.random() <= 0.6)
-            monster = new RandomMonsterCreator().createMonster();
+            isMonster = true;
         else
-            monster = null;
+            isMonster = false;
     }
 
-    public Monster getMonster() {
-        return monster;
+    public boolean isMonster() {
+        return isMonster;
     }
 
-    public void setMonster(Monster monster) {
-        this.monster = monster;
+    public String display(){
+        return "C";
     }
 
-    private Monster monster;
+    private boolean isMonster;
     private static final double probability = 0.6;
 }

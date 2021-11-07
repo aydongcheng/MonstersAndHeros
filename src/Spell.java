@@ -1,4 +1,6 @@
-public class Spell extends Merchandise{
+import java.util.ArrayList;
+
+public abstract class Spell extends Merchandise{
     public Spell(){}
 
     public Spell(String name, int price, int minLevel, int damage, int manaCost){
@@ -6,6 +8,36 @@ public class Spell extends Merchandise{
         setDamage(damage);
         setManaCost(manaCost);
     }
+
+    public Spell(String[] data){
+        this(data[0], Integer.parseInt(data[1]), Integer.parseInt(data[2]), Integer.parseInt(data[3]), Integer.parseInt(data[4]));
+    }
+
+    public ArrayList<StringBuilder> getDisplayLines(){
+        ArrayList<StringBuilder> attributes = new ArrayList<>();
+
+        attributes.add(new StringBuilder("Name: " + getName()));
+
+        attributes.add(new StringBuilder("Price: " + getPrice()));
+
+        attributes.add(new StringBuilder("Level: " + getMinLevel()));
+
+        attributes.add(new StringBuilder("Damage: " + getDamage()));
+
+        attributes.add(new StringBuilder("Mana Cost: " + getManaCost()));
+
+        attributes.add(new StringBuilder("Effect: " + getSpecil()));
+        return attributes;
+    }
+
+    public void display(){
+        ArrayList<StringBuilder> attributes = getDisplayLines();
+        for(StringBuilder stringBuilder: attributes){
+            System.out.println(stringBuilder);
+        }
+    }
+
+    protected abstract void specialEffect(Monster monster);
 
     public int getDamage() {
         return damage;
@@ -23,6 +55,15 @@ public class Spell extends Merchandise{
         this.manaCost = manaCost;
     }
 
+    public String getSpecil() {
+        return specil;
+    }
+
+    public void setSpecil(String specil) {
+        this.specil = specil;
+    }
+
     private int damage;
     private int manaCost;
+    private String specil;
 }

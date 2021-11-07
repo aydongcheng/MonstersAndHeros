@@ -5,7 +5,7 @@ import java.util.Random;
 public abstract class ProbabilityCellCreator implements CellCreator{
     public ProbabilityCellCreator(){}
 
-    public ProbabilityCellCreator(Map<String ,Float> probability){
+    public ProbabilityCellCreator(Map<String ,Double> probability){
         this.probability = probability;
     }
 
@@ -14,8 +14,8 @@ public abstract class ProbabilityCellCreator implements CellCreator{
         int i = r.nextInt(100);
         int count = 0;
         int addUpProb = 0;
-        for(Float prob : probability.values()){
-            if(i <= prob * 100)
+        for(Double prob : probability.values()){
+            if(i + 1 <= addUpProb + prob * 100)
                 return new ArrayList<String>(probability.keySet()).get(count);
             else {
                 addUpProb += prob * 100;
@@ -23,8 +23,8 @@ public abstract class ProbabilityCellCreator implements CellCreator{
             }
 
         }
-        return new ArrayList<String>(probability.keySet()).get(-1);
+        return new ArrayList<String>(probability.keySet()).get(probability.keySet().size()-1);
     }
 
-    private Map<String ,Float> probability;
+    private Map<String ,Double> probability;
 }

@@ -33,7 +33,7 @@ public class Inventory {
             potions.put(potion,1);
     }
 
-    public void consumePotion(Potion potion){
+    public void sellPotion(Potion potion){
         if(potions.get(potion) == 1)
             potions.remove(potion);
         else
@@ -46,6 +46,72 @@ public class Inventory {
 
     public void sellSpell(Spell spell){
         spells.remove(spell);
+    }
+
+    public Map<Potion, Integer> getPotions() {
+        return potions;
+    }
+
+    public void displayPotions(int index){
+        Displayer.listDisplay(new ArrayList<Potion>(potions.keySet()),"Potions",index);
+    }
+
+    public void displayArmors(int index){
+        Displayer.listDisplay(armors,"Armors",index);
+    }
+
+    public void displaySpells(int index){
+        Displayer.listDisplay(spells,"Spells",index);
+    }
+
+    public void displayWeapons(int index){
+        Displayer.listDisplay(weapons,"Weapons",index);
+    }
+
+    public ArrayList<Weapon> getWeapons() {
+        return weapons;
+    }
+
+    public ArrayList<Armor> getArmors() {
+        return armors;
+    }
+
+    public ArrayList<Spell> getSpells() {
+        return spells;
+    }
+
+    public int display(){
+        int index = 0;
+        displayWeapons(index);
+        index += weapons.size();
+        displayArmors(index);
+        index += armors.size();
+        displaySpells(index);
+        index += spells.size();
+        displayPotions(index);
+        return index+ potions.size();
+    }
+
+    public Merchandise displayItems(int index){
+        if(index < weapons.size()){
+            weapons.get(index).display();
+            return weapons.get(index);
+        }
+        else if(index < weapons.size() + armors.size()){
+            index+=weapons.size();
+            armors.get(index).display();
+            return armors.get(index);
+        }
+        else if(index < weapons.size() + armors.size() + spells.size()){
+            index+=armors.size();
+            spells.get(index).display();
+            return spells.get(index);
+        }
+        else {
+            index+=spells.size();
+            new ArrayList<>(potions.keySet()).get(index).display();
+            return new ArrayList<>(potions.keySet()).get(index);
+        }
     }
 
     private ArrayList<Weapon> weapons;

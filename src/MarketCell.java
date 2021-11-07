@@ -8,5 +8,9 @@ public class MarketCell extends Cell {
         return market;
     }
 
+    public String display(){
+        return "M";
+    }
+
     private Market market;
 }

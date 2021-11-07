@@ -1,4 +1,4 @@
-public class Cell {
+public abstract class Cell {
     public Cell(){};
     public Cell(String type, boolean accessible){
         setType(type);
@@ -20,6 +20,8 @@ public class Cell {
     public String getType() {
         return type;
     }
+
+    public abstract String display();
 
     private boolean isAccessible;
     private String type;
