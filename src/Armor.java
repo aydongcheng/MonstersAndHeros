@@ -4,7 +4,7 @@ public class Armor extends Merchandise{
     public Armor(){}
 
     public Armor(String name, int price, int minLevel, int damageReduction){
-        super(name, minLevel, price, "Weapon");
+        super(name, minLevel, price, "Armor");
         setDamageReduction(damageReduction);
     }
 
@@ -12,6 +12,7 @@ public class Armor extends Merchandise{
         this(data[0],Integer.parseInt(data[1]),
                 Integer.parseInt(data[2]),Integer.parseInt(data[3]));
     }
+
     public ArrayList<StringBuilder> getDisplayLines(){
         ArrayList<StringBuilder> attributes = new ArrayList<>();
 
@@ -26,10 +27,7 @@ public class Armor extends Merchandise{
     }
 
     public void display(){
-        ArrayList<StringBuilder> attributes = getDisplayLines();
-        for(StringBuilder stringBuilder: attributes){
-            System.out.println(stringBuilder);
-        }
+        Displayer.displayLines(getDisplayLines());
     }
 
     public int getDamageReduction() {

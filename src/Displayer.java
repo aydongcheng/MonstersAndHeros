@@ -4,45 +4,52 @@ import java.util.Scanner;
 public class Displayer {
     public Displayer(){}
 
-    public static void formDisplay(ArrayList<ArrayList<StringBuilder>> items, int itemSize, int formNum){
-        for(int row = 0; row < Math.ceil(items.size()/formNum); row++) {
+    public static void formDisplay(ArrayList<ArrayList<StringBuilder>> items, int lineLength, int itemLength){
+        StringBuilder stringBuilder = new StringBuilder();
+        for(int row = 0; row < Math.ceil((double) items.size()/lineLength); row++) {
+            stringBuilder.append("\n");
             int line = 0;
             boolean label = true;
+            int lineSize = lineLength;
+            if(row ==  Math.ceil((double) items.size()/lineLength)-1)
+                lineSize = items.size()%lineLength == 0? lineLength:items.size()%lineLength;
             while (label){
                 label = false;
-                for(int i = 0; i<formNum; i++){
-                    if(line <= items.get(row*formNum + i).size()) {
-                        StringBuilder string = items.get(row * formNum + i).get(line);
-                        string.append(" ".repeat(Math.max(0, itemSize - string.length())));
-                        System.out.println(string);
+                for(int i = 0; i< lineSize; i++){
+                    if(line < items.get(row*lineLength + i).size()) {
+                        StringBuilder item = items.get(row * lineLength + i).get(line);
+                        stringBuilder.append(items.get(row * lineLength + i).get(line));
+                        stringBuilder.append(" ".repeat(Math.max(0, itemLength - item.length())));
                         label = true;
                     }
-                    else {
-                        StringBuilder string = new StringBuilder();
-                        string.append(" ".repeat(itemSize));
-                        System.out.println(string);
-                    }
+                    else
+                        stringBuilder.append(" ".repeat(itemLength));
                 }
+                stringBuilder.append("\n");
                 line++;
             }
         }
+        System.out.print(stringBuilder);
     }
 
 
     public static <T extends Displayable> void listDisplay(ArrayList<T> items, String itemName, int startIndex, int lineLength, int itemLength){
         int index = startIndex;
-        StringBuilder s = new StringBuilder(itemName);
-        if(s.length()<itemLength-2)
-            s.append(" ".repeat(Math.max(0, itemLength - 2 - s.length())));
+        StringBuilder s = new StringBuilder(itemName+" :");
+        if(s.length()<itemLength)
+            s.append(" ".repeat(Math.max(0, itemLength - s.length())));
         else
-            itemLength = s.length()+2;
-        s.append(" :");
+            itemLength = s.length();
         StringBuilder stringBuilder = new StringBuilder(s);
         for(T t : items){
+            if((index-startIndex) % lineLength == 0 && (index-startIndex)!=0) {
+                stringBuilder.append("\n");
+                stringBuilder.append(" ".repeat(itemLength));
+            }
             s = new StringBuilder(index + "."+t.getName());
-            s.append(" ".repeat(Math.max(0, itemLength - 2 - s.length())));
             if(s.length()<itemLength)
-            stringBuilder.append(index + "."+t.getName()+" ");
+                s.append(" ".repeat(Math.max(0, itemLength - s.length())));
+            stringBuilder.append(s);
             index++;
         }
         System.out.println(stringBuilder);
@@ -67,6 +74,12 @@ public class Displayer {
                 System.out.println("Sorry, your input is illegal! Please try again.");
             else
                 return choice;
+        }
+    }
+
+    public static void displayLines(ArrayList<StringBuilder> attributes){
+        for(StringBuilder stringBuilder: attributes){
+            System.out.println(stringBuilder);
         }
     }
 

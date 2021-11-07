@@ -115,15 +115,18 @@ public class Market {
             weapons.get(index).display();
             return weapons.get(index);
         }
-        else if(index < weapons.size() + armors.size()){
+        index-= weapons.size();
+        if(index < + armors.size()){
             armors.get(index).display();
             return armors.get(index);
         }
-        else if(index < weapons.size() + armors.size() + spells.size()){
+        index-= armors.size();
+        if(index < spells.size()){
             spells.get(index).display();
             return spells.get(index);
         }
         else {
+            index-= spells.size();
             potions.get(index).display();
             return potions.get(index);
         }

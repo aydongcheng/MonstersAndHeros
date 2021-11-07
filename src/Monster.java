@@ -75,10 +75,7 @@ public class Monster implements Fightable, LevelUp{
     }
 
     public void display(){
-        ArrayList<StringBuilder> attributes = getDisplayLines();
-        for(StringBuilder stringBuilder: attributes){
-            System.out.println(stringBuilder);
-        }
+        Displayer.displayLines(getDisplayLines());
     }
 
     public int getInitLevel() {

@@ -2,44 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ed0a904-83c4-45f6-a282-c10d95d1ea91" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Displayable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Displayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dragon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Exoskeleton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FightManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/FireSpell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IceSpell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LevelUp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LightningSpell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MAHGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Paladin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Sorcerer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SpellCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Spirits.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Team.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Warrior.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/Armor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/Armor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/CommenCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/CommenCell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/ConfigFiles/Warriors.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/ConfigFiles/Warriors.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/Displayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/Displayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/FightManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/FightManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/Hero.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/Hero.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/Inventory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/Inventory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/LightningSpell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/LightningSpell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/MAHBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/MAHBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/MAHGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/MAHGame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/Market.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/Market.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/Monster.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/Monster.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/MonstersAndHeros/Team.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/MonstersAndHeros/Team.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Armor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Armor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ArmorCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ArmorCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CommenCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommenCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ConfigFiles/Warriors.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConfigFiles/Warriors.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Displayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Displayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/FightManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/FightManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Hero.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hero.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Inventory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LightningSpell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LightningSpell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MAHBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAHBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MAHGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MAHGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Market.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Market.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MarketCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MarketCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Merchandise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Merchandise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Monster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Monster.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/NonAccessibleCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NonAccessibleCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Potion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Potion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProbabilityCellCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProbabilityCellCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProbabilityMAHCellCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProbabilityMAHCellCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RandomMonsterCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/RandomMonsterCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/WeanponCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/WeanponCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Weapon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Weapon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Team.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Team.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +97,7 @@
       <updated>1636124971645</updated>
       <workItem from="1636124979024" duration="27816000" />
       <workItem from="1636218705259" duration="31869000" />
-      <workItem from="1636290928432" duration="10139000" />
+      <workItem from="1636290928432" duration="23370000" />
     </task>
     <servers />
   </component>

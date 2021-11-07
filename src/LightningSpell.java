@@ -3,12 +3,12 @@ public class LightningSpell extends Spell{
 
     public LightningSpell(String name, int price, int minLevel, int damage, int manaCost){
         super(name,price,minLevel,damage,manaCost);
-        setSpecil("reduce 10% e dodge chance");
+        setSpecil("reduce 10% dodge chance");
     }
 
     public LightningSpell(String[] data) {
         super(data);
-        setSpecil("reduce 10% e dodge chance");
+        setSpecil("reduce 10% dodge chance");
     }
 
     @Override

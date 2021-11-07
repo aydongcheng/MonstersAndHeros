@@ -97,18 +97,18 @@ public class Inventory {
             weapons.get(index).display();
             return weapons.get(index);
         }
-        else if(index < weapons.size() + armors.size()){
-            index+=weapons.size();
+        index-=weapons.size();
+        if(index < armors.size()){
             armors.get(index).display();
             return armors.get(index);
         }
-        else if(index < weapons.size() + armors.size() + spells.size()){
-            index+=armors.size();
+        index-=armors.size();
+        if(index <spells.size()){
             spells.get(index).display();
             return spells.get(index);
         }
         else {
-            index+=spells.size();
+            index-=spells.size();
             new ArrayList<>(potions.keySet()).get(index).display();
             return new ArrayList<>(potions.keySet()).get(index);
         }

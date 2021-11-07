@@ -1,13 +1,10 @@
 public class CommenCell extends Cell{
     public CommenCell(){
         super("commen",true);
-        if(Math.random() <= 0.6)
-            isMonster = true;
-        else
-            isMonster = false;
     }
 
     public boolean isMonster() {
+        isMonster = Math.random() <= 0.8;
         return isMonster;
     }
 

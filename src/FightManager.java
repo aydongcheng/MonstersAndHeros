@@ -18,12 +18,19 @@ public class FightManager {
         monster = randomMonsterCreator.createMonster(monsterLevel);
         for(Hero hero: heros.getHeroes()){
             if(MonsterNum == 0){
-                hero.getRewards(monster.getLevel());
+                if(hero.getRewards(monster.getLevel()))
+                    System.out.println("Hero " + hero.getName()+" level up!");
                 continue;
             }
             while (!hero.isFaint()) {
-                hero.display();
-                monster.display();
+                ArrayList<StringBuilder> heroPrintLines = hero.getDisplayLines();
+                heroPrintLines.add(0,new StringBuilder("HERO"));
+                ArrayList<StringBuilder> MonsterPrintLines = monster.getDisplayLines();
+                MonsterPrintLines.add(0,new StringBuilder("MONSTER"));
+                ArrayList<ArrayList<StringBuilder>> stringBuilders = new ArrayList<>();
+                stringBuilders.add(heroPrintLines);
+                stringBuilders.add(MonsterPrintLines);
+                Displayer.formDisplay(stringBuilders,2,30);
                 int herosAction = chooseAction();
                 if(herosAction == 1){
                     int heroDamage = hero.attack();
@@ -41,34 +48,58 @@ public class FightManager {
                     System.out.println("Monster "+ monster.getName() + " " + hero.getSpell().getSpecil());
                 }
                 else if(herosAction == 3){
-                    hero.getInventory().displayPotions(0);
-                    int index = Displayer.chooseList(hero.getInventory().getPotions().size());
-                    hero.consumePotion(new ArrayList<Potion>(hero.getInventory().getPotions().keySet()).get(index));
+                    if(hero.getInventory().getPotions().size()==0) {
+                        System.out.println("Hero has no potion to use.");
+                        continue;
+                    }
+                    else {
+                        hero.getInventory().displayPotions(0);
+                        int index = Displayer.chooseList(hero.getInventory().getPotions().size());
+                        hero.consumePotion(new ArrayList<Potion>(hero.getInventory().getPotions().keySet()).get(index));
+                    }
                 }
                 else {
-                    hero.getInventory().displayWeapons(0);
-                    int index = Displayer.chooseList(hero.getInventory().getWeapons().size());
-                    hero.setWeapon(hero.getInventory().getWeapons().get(index));
-                    hero.getInventory().displayArmors(0);
-                    index = Displayer.chooseList(hero.getInventory().getArmors().size());
-                    hero.setArmor(hero.getInventory().getArmors().get(index));
-
+                    boolean hasEquipment= false;
+                    if(hero.getInventory().getWeapons().size()==0) {
+                        System.out.println("Hero has no weapon to use.");
+                    }
+                    else {
+                        hero.getInventory().displayWeapons(0);
+                        int index = Displayer.chooseList(hero.getInventory().getWeapons().size());
+                        hero.setWeapon(hero.getInventory().getWeapons().get(index));
+                        hasEquipment = true;
+                    }
+                    if(hero.getInventory().getArmors().size()==0) {
+                        System.out.println("Hero has no armor to use.");
+                    }
+                    else {
+                        hero.getInventory().displayArmors(0);
+                        int index = Displayer.chooseList(hero.getInventory().getArmors().size());
+                        hero.setArmor(hero.getInventory().getArmors().get(index));
+                        hasEquipment = true;
+                    }
+                    if(!hasEquipment)
+                        continue;
                 }
                 if(monster.isFaint()){
                     MonsterNum--;
-                    if(MonsterNum == 0)
+                    if(MonsterNum == 0) {
+                        hero.recover();
+                        if(hero.getRewards(monster.getLevel()))
+                            System.out.println("Hero " + hero.getName()+" level up!");
+                        System.out.println("Heros win!!!");
                         break;
+                    }
                     monster = randomMonsterCreator.createMonster(monsterLevel);
                     continue;
                 }
                 int monsterDamage = monster.attack();
                 int heroGetHurt = hero.getHurt(monsterDamage);
                 System.out.println("Monster "+ monster.getName() +" cast "+ heroGetHurt + " damage to hero "+ hero.getName());
+                hero.recover();
             }
         }
-        if(monster.getHp() == 0)
-            System.out.println("Heros win!!!");
-        else
+        if(monster.getHp() != 0)
             System.out.println("Heros lose!!!");
     }
 

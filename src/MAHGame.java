@@ -10,7 +10,8 @@ public class MAHGame {
     }
 
     public void start(){
-        chooseHero();
+        System.out.println("WELCOME TO Legends: Monsters and Heroes!!!");
+        team.chooseHero();
         while (true) {
             printInstruction();
             mahBoard.display(team.getRow(), team.getColumn());
@@ -27,38 +28,21 @@ public class MAHGame {
                         fightManager = new FightManager(team);
                         fightManager.start();
                     }
+                    else
+                        System.out.println("LUCKY!!! NO MONSTERS!!!");
                 }
             }
         }
     }
 
-    public void chooseHero(){
-        ArrayList<Hero> heroes = new ArrayList<>();
-        String[] files = new String[]{"Warriors", "Sorcerers", "Paladins"};
-        for(String file: files) {
-            List<String> lines = new FileReader().readFile(file);
-            for(int i = 1;i<lines.size();i++){
-                if(lines.get(i).equals(""))
-                    break;
-                heroes.add(new Hero(lines.get(i).split("\\s+")));
-            }
-        }
-
-        Displayer.listDisplay(heroes,"Heros",0);
-//        int HeroNum = 3;
-//        while(HeroNum>0) {
-//            index = chooseList(heroes.size());
-//        }
-        int index = Displayer.chooseList(heroes.size());
-        team.addHero(heroes.get(index));
-    }
-
 
 
     private void printInstruction(){
-        System.out.println("+--------------------------------------+");
-        System.out.println("|move:w a s d; Information: i; Quit : q|");
-        System.out.println("+--------------------------------------+");
+        System.out.println("+---------------------------------------+");
+        System.out.println("|move: w a s d; Information: i; Quit : q|");
+        System.out.println("|H: Heroes;  N: inaccessible;  M: Market|");
+        System.out.println("|C: Wild                                |");
+        System.out.println("+---------------------------------------+");
     }
 
     private String chooseAction(){
@@ -72,7 +56,6 @@ public class MAHGame {
                 }
                 else
                     System.out.println("The place is inaccessible. Please try again.");
-
             }
             else if(input.equals("s")){
                 if(checkMove(team.getRow()+1, team.getColumn())){
@@ -99,9 +82,12 @@ public class MAHGame {
                     System.out.println("The place is inaccessible. Please try again.");
             }
             else if(input.equals("i")){
+                ArrayList<ArrayList<StringBuilder>> stringBuilder = new ArrayList<>();
                 for(Hero hero:team.getHeroes())
-                    hero.display();
+                    stringBuilder.add(hero.getDisplayLines());
+                Displayer.formDisplay(stringBuilder,3,30);
                 equipHero();
+                return "info";
             }
         }
     }
@@ -129,7 +115,7 @@ public class MAHGame {
                     if(!hero.buyMerchandise(merchandise))
                         System.out.println("Sorry hero " + hero.getName()+" does not meet the purchase conditions");
                     else
-                        System.out.println("Hero " + hero.getName() + "got " + merchandise.getName());
+                        System.out.println("Hero " + hero.getName() + " got " + merchandise.getName());
                 }
             }
             else break;
@@ -139,6 +125,7 @@ public class MAHGame {
             String input = scan.next();
             if(input.equals("y")) {
                 System.out.println("Which hero wants to sell his/her equipment?");
+                team.displayHerosName();
                 int indeOfHero = Displayer.chooseList(team.getHeroes().size());
                 Hero hero = team.getHeroes().get(indeOfHero);
                 int NumEquipInInventory = hero.getInventory().display();
@@ -164,13 +151,17 @@ public class MAHGame {
                 int indeOfHero = Displayer.chooseList(team.getHeroes().size());
                 Hero hero = team.getHeroes().get(indeOfHero);
                 int NumEquipInInventory = hero.getInventory().display();
-                System.out.println("Select the equipment you need to equip or use.");
-                int indexOfEquipment = Displayer.chooseList(NumEquipInInventory);
-                Merchandise merchandise = hero.getInventory().displayItems(indexOfEquipment);
-                System.out.println("Do you want to equip or use this merchandise?(y/others)");
-                input = scan.next();
-                if(input.equals("y")){
-                    hero.equipOrUseMerchandise(merchandise);
+                if(NumEquipInInventory==0)
+                    System.out.println("Hero " + hero.getName() + " doesn't have any equipment.");
+                else {
+                    System.out.println("Select the equipment you need to equip or use.");
+                    int indexOfEquipment = Displayer.chooseList(NumEquipInInventory);
+                    Merchandise merchandise = hero.getInventory().displayItems(indexOfEquipment);
+                    System.out.println("Do you want to equip or use this merchandise?(y/others)");
+                    input = scan.next();
+                    if (input.equals("y")) {
+                        hero.equipOrUseMerchandise(merchandise);
+                    }
                 }
             }
             else break;

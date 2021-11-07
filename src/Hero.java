@@ -10,8 +10,6 @@ public class Hero implements Fightable, LevelUp, Displayable{
         setStrength(strength);
         setAgility(agility);
         setDexterity(dexterity);
-        setStartingMoney(startingMoney);
-        setStartingExp(startingExp);
         setMoney(startingMoney);
         setExp(startingExp);
         setLevel(1);
@@ -67,9 +65,12 @@ public class Hero implements Fightable, LevelUp, Displayable{
 
     public boolean getRewards(int MonsterLevel, int exp){
         addMoney(MonsterLevel*100);
+        return addExp(exp);
+    }
+
+    public void recover(){
         setHp((int) Math.ceil(getHp()*1.1));
         setMana((int) Math.ceil(getMana()*1.1));
-        return addExp(exp);
     }
 
     public boolean getRewards(int MonsterLevel){
@@ -124,11 +125,20 @@ public class Hero implements Fightable, LevelUp, Displayable{
     public void sellMerchandise(Merchandise merchandise){
         switch (merchandise.getType()){
             case "weapon":
-                inventory.sellWeapon((Weapon) merchandise);break;
+                inventory.sellWeapon((Weapon) merchandise);
+                if(merchandise == getWeapon())
+                    setWeapon(null);
+                break;
             case "armor":
-                inventory.sellArmor((Armor) merchandise);break;
+                inventory.sellArmor((Armor) merchandise);
+                if(merchandise == getArmor())
+                    setArmor(null);
+                break;
             case "Spell":
-                inventory.sellSpell((Spell) merchandise);break;
+                inventory.sellSpell((Spell) merchandise);
+                if(merchandise == getSpell())
+                    setSpell(null);
+                break;
             case "Potion":
                 inventory.sellPotion((Potion) merchandise);break;
         }
@@ -207,10 +217,7 @@ public class Hero implements Fightable, LevelUp, Displayable{
     }
 
     public void display(){
-        ArrayList<StringBuilder> attributes = getDisplayLines();
-        for(StringBuilder stringBuilder: attributes){
-            System.out.println(stringBuilder);
-        }
+        Displayer.displayLines(getDisplayLines());
     }
 
     public String getName() {
@@ -251,22 +258,6 @@ public class Hero implements Fightable, LevelUp, Displayable{
 
     protected void setDexterity(int dexterity) {
         this.dexterity = dexterity;
-    }
-
-    public int getStartingMoney() {
-        return StartingMoney;
-    }
-
-    private void setStartingMoney(int startingMoney) {
-        StartingMoney = startingMoney;
-    }
-
-    public int getStartingExp() {
-        return StartingExp;
-    }
-
-    private void setStartingExp(int startingExp) {
-        StartingExp = startingExp;
     }
 
     public int getMoney() {
@@ -342,8 +333,6 @@ public class Hero implements Fightable, LevelUp, Displayable{
     private int strength;
     private int agility;
     private int dexterity;
-    private int StartingMoney;
-    private int StartingExp;
     private int money;
     private int exp;
     private int hp;

@@ -22,23 +22,27 @@ public class MAHBoard extends Board {
     }
 
     public void display(int row, int column){
+        System.out.print("  ");
         for(int j=0; j<getCells()[0].length; j++){
             System.out.print("  "+ (j+1) +" ");
         }
         System.out.print("\n");
         for(int i=0; i<getCells().length; i++){
+            System.out.print("  ");
             for(int j=0; j<getCells()[i].length; j++){
                 System.out.print("+---");
             }
             System.out.print("+\n");
+            System.out.print((i+1) +" ");
             for(int j=0; j<getCells()[i].length; j++){
                 if(i==row&&j==column)
                     System.out.print("| H ");
                 else
                     System.out.print("| "+getCells()[i][j].display()+" ");
             }
-            System.out.print("| " + (i+1) +"\n");
+            System.out.print("|\n");
         }
+        System.out.print("  ");
         for(int j=0; j<getCells()[0].length; j++){
             System.out.print("+---");
         }
