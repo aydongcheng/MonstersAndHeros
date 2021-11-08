@@ -1,3 +1,4 @@
+//create certain type of spell
 public class SpellCreator implements MerchandiseCreator{
     public SpellCreator(){}
 

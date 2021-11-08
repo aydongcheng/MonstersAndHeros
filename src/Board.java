@@ -1,12 +1,15 @@
+//the super class of entity board
 public class Board {
     public Board(){}
 
+    //create board with width and length
     public Board(int width, int length){
         setLength(length);
         setWidth(width);
         cells = new Cell[length][width];
     }
 
+    //create a squared board with size
     public Board(int size){
         this(size,size);
     }
@@ -27,6 +30,7 @@ public class Board {
         return length;
     }
 
+    //the grid in the map
     public Cell[][] getCells() {
         return cells;
     }

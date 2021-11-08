@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+//the entity of weapon
 public class Weapon extends  Merchandise{
     public Weapon(){}
 

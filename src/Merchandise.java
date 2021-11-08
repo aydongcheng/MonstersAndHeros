@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 
+//the entity of merchandise
 public abstract class Merchandise {
     public Merchandise(){}
 
+    //create merchandise with attributes
     public Merchandise(String name, int minLevel, int price, String type){
         setName(name);
         setMinLevel(minLevel);

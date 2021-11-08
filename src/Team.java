@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+//the entity of team
 public class Team {
     public Team(){
         scan = new Scanner(System.in);
@@ -10,11 +11,13 @@ public class Team {
         setRow(0);
     }
 
+    //move to new location
     public void move(int row, int column){
         setColumn(column);
         setRow(row);
     }
 
+    //add a hero to the team
     private void addHero(Hero h){
         heroes.add(h);
     }
@@ -39,10 +42,12 @@ public class Team {
         this.column = column;
     }
 
+    //display the name of heroes in the team
     public void displayHerosName(){
         Displayer.listDisplay(heroes,"Heros",0);
     }
 
+    //choose hero to join the team
     public void chooseHero(){
         ArrayList<Hero> heroes = new ArrayList<>();
         String[] files = new String[]{"Warriors", "Sorcerers", "Paladins"};
@@ -51,12 +56,18 @@ public class Team {
             for(int i = 1;i<lines.size();i++){
                 if(lines.get(i).equals(""))
                     break;
-                heroes.add(new Hero(lines.get(i).split("\\s+")));
+                if(file.equals("Warriors"))
+                    heroes.add(new Warrior(lines.get(i).split("\\s+")));
+                else if(file.equals("Sorcerers"))
+                    heroes.add(new Sorcerer(lines.get(i).split("\\s+")));
+                else
+                    heroes.add(new Paladin(lines.get(i).split("\\s+")));
             }
         }
         System.out.println("Let's build your team.\nThere are heroes.");
         Displayer.listDisplay(heroes,"Heros",0);
 
+        //the max number of hero in one team
         int HeroNum = 3;
         for(int i=0; i<HeroNum; i++){
             if(i!=0){

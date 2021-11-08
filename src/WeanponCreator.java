@@ -1,3 +1,4 @@
+//the creator of weapons
 public class WeanponCreator implements MerchandiseCreator{
     public WeanponCreator(){}
 

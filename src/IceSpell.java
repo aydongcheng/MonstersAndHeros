@@ -1,3 +1,4 @@
+//the entity of ice spell
 public class IceSpell extends Spell{
     public IceSpell(){}
 
@@ -11,6 +12,7 @@ public class IceSpell extends Spell{
         setSpecil("reduce 10% damage");
     }
 
+    //cast special effect to monster
     @Override
     protected void specialEffect(Monster monster) {
         monster.setDamage((int) Math.ceil(monster.getDamage()*0.9));

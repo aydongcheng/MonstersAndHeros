@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
+//the creator of potion
 public class PotionCreator implements MerchandiseCreator{
     public PotionCreator(){}
 

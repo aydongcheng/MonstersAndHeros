@@ -1,3 +1,4 @@
+//the super class of all cell in the map
 public abstract class Cell {
     public Cell(){};
     public Cell(String type, boolean accessible){
@@ -23,6 +24,8 @@ public abstract class Cell {
 
     public abstract String display();
 
+    //whether the cell is accessible
     private boolean isAccessible;
+    //the type of the cell
     private String type;
 }

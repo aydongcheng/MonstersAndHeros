@@ -1,7 +1,7 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+//the entity of game monster and hero
 public class MAHGame {
     public MAHGame(){
        scan = new Scanner(System.in);
@@ -9,20 +9,29 @@ public class MAHGame {
        team = new Team();
     }
 
+    //game start
     public void start(){
         System.out.println("WELCOME TO Legends: Monsters and Heroes!!!");
+        //create team
         team.chooseHero();
         while (true) {
             printInstruction();
+            //display the map
             mahBoard.display(team.getRow(), team.getColumn());
+            //hero choose action
             String action = chooseAction();
+            //move to new cell
             if(action.equals("move")){
-                if(mahBoard.getCells()[team.getRow()][team.getColumn()].getType().equals("market")){
+                //move to a market cell
+                if(mahBoard.getCells()[team.getRow()][team.getColumn()] instanceof MarketCell){
                     System.out.println("WELCOME TO MARKET!!!");
                     Market market = ((MarketCell)mahBoard.getCells()[team.getRow()][team.getColumn()]).getMarket();
+                    //trade
                     trade(market);
                 }
+                //move to common cell
                 else {
+                    //whether meet monsters
                     if(((CommenCell)mahBoard.getCells()[team.getRow()][team.getColumn()]).isMonster()){
                         System.out.println("HERO MEET MONSTERS!!!");
                         fightManager = new FightManager(team);
@@ -37,6 +46,7 @@ public class MAHGame {
 
 
 
+    //print instruction of the game
     private void printInstruction(){
         System.out.println("+---------------------------------------+");
         System.out.println("|Move: w a s d; Information: i; Quit: q |");
@@ -45,6 +55,7 @@ public class MAHGame {
         System.out.println("+---------------------------------------+");
     }
 
+    //choose the action
     private String chooseAction(){
         while (true) {
             System.out.println("Please choose your action:");
@@ -90,17 +101,20 @@ public class MAHGame {
                 return "info";
             }
             else if(input.equals("q")){
+                System.out.println("GOODBYE!!!");
                 System.exit(0);
             }
         }
     }
 
+    //check whether the new cell is accessible
     private boolean checkMove(int row, int column){
         if(row>=0 && column>=0 && mahBoard.getCells()[row][column].isAccessible())
             return true;
         else return false;
     }
 
+    //trade with a market
     private void trade(Market market){
         int totalNum = market.display();
         while (true) {
@@ -145,6 +159,8 @@ public class MAHGame {
         }
     }
 
+
+    //change equipment and use potions when not fighting
     private void equipHero(){
         while (true) {
             System.out.println("Do you want to check heroes' inventory?(y/others)");

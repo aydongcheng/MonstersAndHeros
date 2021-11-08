@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 
+//create different cells with probability
 public abstract class ProbabilityCellCreator implements CellCreator{
     public ProbabilityCellCreator(){}
 
@@ -9,6 +10,7 @@ public abstract class ProbabilityCellCreator implements CellCreator{
         this.probability = probability;
     }
 
+    //according to the probability to determine the type of cell to create
     protected String selectType(){
         Random r = new Random();
         int i = r.nextInt(100);

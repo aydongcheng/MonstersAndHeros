@@ -1,20 +1,22 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Monster implements Fightable, LevelUp{
+//the entity of monster
+public class Monster extends Characters{
     public Monster(){}
 
+    //create monster with attributes
     public Monster(String name, int initLevel, int damage, int defense, int dodgeChance){
-        setName(name);
+        super(name);
         setInitLevel(initLevel);
         setLevel(initLevel);
         setDamage(damage);
         setDefense(defense);
         setDodgeChance(dodgeChance);
         setHp(initLevel*100);
-        setFaint(false);
     }
 
+    //create monster with attributes in string list form
     public Monster(String[] attributes){
         this(attributes[0], Integer.parseInt(attributes[1]), Integer.parseInt(attributes[2]),
                 Integer.parseInt(attributes[3]), Integer.parseInt(attributes[4]));
@@ -56,6 +58,7 @@ public class Monster implements Fightable, LevelUp{
         return actualDamage;
     }
 
+    //get the lines used to display monster
     public ArrayList<StringBuilder> getDisplayLines(){
         ArrayList<StringBuilder> attributes = new ArrayList<>();
 
@@ -110,49 +113,13 @@ public class Monster implements Fightable, LevelUp{
         this.dodgeChance = dodgeChance;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    private void setName(String name) {
-        this.name = name;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    private void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public boolean isFaint() {
-        return isFaint;
-    }
-
-    private void setFaint(boolean faint) {
-        isFaint = faint;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    private void setLevel(int level) {
-        this.level = level;
-    }
-
     @Override
     public String toString() {
         return getName();
     }
 
-    private boolean isFaint;
-    private int hp;
-    private String name;
     private int initLevel;
     private int damage;
     private int defense;
     private int dodgeChance;
-    private int level;
 }

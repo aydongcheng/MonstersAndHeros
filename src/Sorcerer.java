@@ -1,8 +1,13 @@
+//the entity of sorcerer
 public class Sorcerer extends Hero{
     public Sorcerer(){}
 
     public Sorcerer(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExp){
         super(name, mana, strength, agility, dexterity, startingMoney, startingExp);
+    }
+
+    public Sorcerer(String[] attributes){
+        super(attributes);
     }
 
     @Override

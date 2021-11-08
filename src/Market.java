@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+//the entity of market
 public class Market {
     public Market(){
         FileReader fileReader = new FileReader();
@@ -46,6 +47,8 @@ public class Market {
             }
         }
     }
+
+    //display items in market
 
     public void displayPotions(int index){
         Displayer.listDisplay(potions,"Potions",index);

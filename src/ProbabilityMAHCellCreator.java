@@ -1,5 +1,6 @@
 import java.util.Map;
 
+//the game monster and hero 's map's cell creator
 public class ProbabilityMAHCellCreator extends ProbabilityCellCreator{
     public ProbabilityMAHCellCreator(){}
 
@@ -7,6 +8,7 @@ public class ProbabilityMAHCellCreator extends ProbabilityCellCreator{
         super(probability);
     }
 
+    //create cell with certain type;
     @Override
     public Cell createCell() {
         String type = selectType();

@@ -1,8 +1,10 @@
 import java.util.ArrayList;
 
+//the super class of all kinds of spell
 public abstract class Spell extends Merchandise{
     public Spell(){}
 
+    //create spell with attributes
     public Spell(String name, int price, int minLevel, int damage, int manaCost){
         super(name, minLevel, price, "Spell");
         setDamage(damage);

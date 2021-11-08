@@ -1,3 +1,4 @@
+//the creator of armor
 public class ArmorCreator implements MerchandiseCreator{
     public ArmorCreator(){}
 

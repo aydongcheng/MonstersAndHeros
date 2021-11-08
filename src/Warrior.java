@@ -1,8 +1,13 @@
+//the entity of warrior
 public class Warrior extends Hero{
     public Warrior(){}
 
     public Warrior(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExp){
         super(name, mana, strength, agility, dexterity, startingMoney, startingExp);
+    }
+
+    public Warrior(String[] attributes){
+        super(attributes);
     }
 
     @Override

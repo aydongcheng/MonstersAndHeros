@@ -1,3 +1,4 @@
+//the entity of fire spell
 public class FireSpell extends Spell{
     public FireSpell(){}
 
@@ -11,6 +12,7 @@ public class FireSpell extends Spell{
         setSpecil("reduce 10% defense");
     }
 
+    //cast special effect to monster
     @Override
     protected void specialEffect(Monster monster) {
         monster.setDefense((int) Math.ceil(monster.getDefense()*0.9));

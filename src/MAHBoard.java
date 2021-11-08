@@ -1,9 +1,11 @@
 import java.util.HashMap;
 import java.util.Map;
 
+//the entity of map
 public class MAHBoard extends Board {
     public MAHBoard(){}
 
+    //create map with size
     public MAHBoard(int size){
         super(size);
         MAHBoard.probability.put("non-accessible", 0.1);
@@ -21,6 +23,7 @@ public class MAHBoard extends Board {
         return getWidth();
     }
 
+    //display the map with heroes' location
     public void display(int row, int column){
         System.out.print("  ");
         for(int j=0; j<getCells()[0].length; j++){

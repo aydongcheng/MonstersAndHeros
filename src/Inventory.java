@@ -1,9 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
+//the entity of inventory
 public class Inventory {
     public Inventory(){
         weapons = new ArrayList<>();
@@ -12,6 +11,7 @@ public class Inventory {
         spells = new ArrayList<>();
     }
 
+    //add weapon to inventory
     public void addWeapon(Weapon weapon){
         weapons.add(weapon);
     }
@@ -54,6 +54,7 @@ public class Inventory {
         return potions;
     }
 
+    //display potions and the number of potions
     public void displayPotions(int index){
         ArrayList<String> strings = new ArrayList<>();
         potions.forEach((k, v) -> strings.add(k.getName()+" * "+v));
@@ -84,6 +85,7 @@ public class Inventory {
         return spells;
     }
 
+    //display all items in inventory
     public int display(){
         int index = 0;
         displayWeapons(index);
@@ -96,6 +98,7 @@ public class Inventory {
         return index+ potions.size();
     }
 
+    //find the item with its index
     public Merchandise displayItems(int index){
         if(index < weapons.size()){
             weapons.get(index).display();

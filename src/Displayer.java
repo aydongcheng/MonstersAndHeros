@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//the tool class to display infos
 public class Displayer {
     public Displayer(){}
 
+    //diaplay the data in form layout
     public static void formDisplay(ArrayList<ArrayList<StringBuilder>> items, int lineLength, int itemLength){
         StringBuilder stringBuilder = new StringBuilder();
+        //divide the items to several rows
         for(int row = 0; row < Math.ceil((double) items.size()/lineLength); row++) {
             stringBuilder.append("\n");
             int line = 0;
@@ -32,7 +35,7 @@ public class Displayer {
         System.out.print(stringBuilder);
     }
 
-
+    //display the list with index
     public static <T> void listDisplay(ArrayList<T> items, String itemName, int startIndex, int lineLength, int itemLength){
         int index = startIndex;
         StringBuilder s = new StringBuilder(itemName+" :");
@@ -55,10 +58,12 @@ public class Displayer {
         System.out.println(stringBuilder);
     }
 
+    //display the list with fixed lineLength and itemLength
     public static <T> void listDisplay(ArrayList<T> items, String itemName, int startIndex){
-        listDisplay(items,itemName,startIndex,5,30);
+        listDisplay(items,itemName,startIndex,3,30);
     }
 
+    //ask the client to choose the one of the item in the list
     public static int chooseList(int listSize){
         while (true) {
             System.out.println("Please make your choice:(input the number in front of the item)");
@@ -77,6 +82,7 @@ public class Displayer {
         }
     }
 
+    //display the lines
     public static void displayLines(ArrayList<StringBuilder> attributes){
         for(StringBuilder stringBuilder: attributes){
             System.out.println(stringBuilder);

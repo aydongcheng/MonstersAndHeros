@@ -1,8 +1,13 @@
+//the entity of paladin
 public class Paladin extends Hero{
     public Paladin(){}
 
     public Paladin(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExp){
         super(name, mana, strength, agility, dexterity, startingMoney, startingExp);
+    }
+
+    public Paladin(String[] attributes){
+        super(attributes);
     }
 
     @Override

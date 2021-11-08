@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Hero implements Fightable, LevelUp{
+//the entity of all kinds of heroes
+public class Hero extends Characters{
     public Hero(){}
 
+    //create hero with attributes
     public Hero(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExp){
-        setName(name);
+        super(name);
         setMana(mana);
         setStrength(strength);
         setAgility(agility);
@@ -14,13 +16,13 @@ public class Hero implements Fightable, LevelUp{
         setExp(startingExp);
         setLevel(1);
         setHp(100);
-        setFaint(false);
         weapon = null;
         armor = null;
         spell = null;
         inventory = new Inventory();
     }
 
+    //create hero with attributes in string list form
     public Hero(String[] attributes){
         this(attributes[0], Integer.parseInt(attributes[1]), Integer.parseInt(attributes[2]),
                 Integer.parseInt(attributes[3]), Integer.parseInt(attributes[4]), Integer.parseInt(attributes[5]),
@@ -55,6 +57,7 @@ public class Hero implements Fightable, LevelUp{
         return actualDamage;
     }
 
+    //cast a spell, return the spell damage
     public int SpellAttack(){
         if(spell!=null && getMana() >= spell.getManaCost()) {
             setMana(getMana()-spell.getManaCost());
@@ -63,16 +66,19 @@ public class Hero implements Fightable, LevelUp{
         else return 0;
     }
 
+    //when hero win the fight, get the rewards from fight
     public boolean getRewards(int MonsterLevel, int exp){
         addMoney(MonsterLevel*100);
         return addExp(exp);
     }
 
+    //hero recover after one round of the fight
     public void recover(){
         setHp((int) Math.ceil(getHp()*1.1));
         setMana((int) Math.ceil(getMana()*1.1));
     }
 
+    //get rewards with default exp
     public boolean getRewards(int MonsterLevel){
         return getRewards(MonsterLevel,2);
     }
@@ -103,6 +109,7 @@ public class Hero implements Fightable, LevelUp{
         setHp(getLevel()*100);
     }
 
+    //buy a merchandise and store it to the inventory
     public boolean buyMerchandise(Merchandise merchandise){
         if(merchandise.getMinLevel() > getLevel() || getMoney() < merchandise.getPrice())
             return false;
@@ -122,29 +129,30 @@ public class Hero implements Fightable, LevelUp{
         }
     }
 
+    //sell the merchandise in the inverntory
     public void sellMerchandise(Merchandise merchandise){
-        switch (merchandise.getType()){
-            case "weapon":
-                inventory.sellWeapon((Weapon) merchandise);
-                if(merchandise == getWeapon())
-                    setWeapon(null);
-                break;
-            case "armor":
-                inventory.sellArmor((Armor) merchandise);
-                if(merchandise == getArmor())
-                    setArmor(null);
-                break;
-            case "Spell":
-                inventory.sellSpell((Spell) merchandise);
-                if(merchandise == getSpell())
-                    setSpell(null);
-                break;
-            case "Potion":
-                inventory.sellPotion((Potion) merchandise);break;
+        if(merchandise instanceof Weapon){
+            inventory.sellWeapon((Weapon) merchandise);
+            if(merchandise == getWeapon())
+                setWeapon(null);
+        }
+        else if(merchandise instanceof Armor) {
+            inventory.sellArmor((Armor) merchandise);
+            if (merchandise == getArmor())
+                setArmor(null);
+        }
+        else if(merchandise instanceof Potion) {
+            inventory.sellPotion((Potion) merchandise);
+        }
+        else{
+            inventory.sellSpell((Spell) merchandise);
+            if (merchandise == getSpell())
+                setSpell(null);
         }
         addMoney(merchandise.getPrice()/2);
     }
 
+    //use a potion
     public void consumePotion(Potion potion){
         int increase = potion.getAttributeIncrease();
         String[] attributes = potion.getAttributes();
@@ -172,6 +180,7 @@ public class Hero implements Fightable, LevelUp{
         getInventory().sellPotion(potion);
     }
 
+    //equip an equipment or use a potion
     public void equipOrUseMerchandise(Merchandise merchandise){
         if(merchandise instanceof Weapon)
             setWeapon((Weapon) merchandise);
@@ -183,6 +192,7 @@ public class Hero implements Fightable, LevelUp{
             consumePotion((Potion) merchandise);
     }
 
+    //get the display lines
     public ArrayList<StringBuilder> getDisplayLines(){
         ArrayList<StringBuilder> attributes = new ArrayList<>();
 
@@ -218,14 +228,6 @@ public class Hero implements Fightable, LevelUp{
 
     public void display(){
         Displayer.displayLines(getDisplayLines());
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    private void setName(String name) {
-        this.name = name;
     }
 
     public int getMana() {
@@ -276,30 +278,6 @@ public class Hero implements Fightable, LevelUp{
         this.exp = exp;
     }
 
-    public int getHp() {
-        return hp;
-    }
-
-    private void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getLevel() {
-        return level;
-    }
-
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public boolean isFaint() {
-        return isFaint;
-    }
-
-    public void setFaint(boolean faint) {
-        isFaint = faint;
-    }
-
     public Inventory getInventory() {
         return inventory;
     }
@@ -333,16 +311,12 @@ public class Hero implements Fightable, LevelUp{
         return getName();
     }
 
-    private String name;
     private int mana;
     private int strength;
     private int agility;
     private int dexterity;
     private int money;
     private int exp;
-    private int hp;
-    private int level;
-    private boolean isFaint;
     private Weapon weapon;
     private Armor armor;
     private Spell spell;

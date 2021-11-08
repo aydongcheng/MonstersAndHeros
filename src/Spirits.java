@@ -1,8 +1,13 @@
+//the entity of spirits
 public class Spirits extends Monster{
     public Spirits(){}
 
     public Spirits(String name, int initLevel, int damage, int defense, int dodgeChance){
         super(name, initLevel, damage, defense, dodgeChance);
+    }
+
+    public Spirits(String[] attributes){
+        super(attributes);
     }
 
     @Override

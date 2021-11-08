@@ -1,3 +1,4 @@
+//the entity of lightning spell
 public class LightningSpell extends Spell{
     public LightningSpell(){}
 
@@ -11,6 +12,7 @@ public class LightningSpell extends Spell{
         setSpecil("reduce 10% dodge chance");
     }
 
+    //cast special effect to monster
     @Override
     protected void specialEffect(Monster monster) {
         monster.setDodgeChance((int) Math.ceil(monster.getDodgeChance()*0.9));

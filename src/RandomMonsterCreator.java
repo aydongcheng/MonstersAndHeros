@@ -1,7 +1,7 @@
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
+//random choose a kind of monster and create
 public class RandomMonsterCreator implements MonsterCreator{
     public RandomMonsterCreator(){}
 
@@ -18,11 +18,20 @@ public class RandomMonsterCreator implements MonsterCreator{
         lines.removeIf(o -> o.equals(""));
         if(level>0)
             lines.removeIf(o -> Integer.parseInt(o.split("\\s+")[1])>level);
+        int i2 = 0;
         if(lines.size()>1)
-            i = r.nextInt(lines.size()-1);
-        else i=0;
-        Monster monster = new Monster(lines.get(i).split("\\s+"));
-        monster.levelUpTo(level);
+            i2 = r.nextInt(lines.size()-1);
+        Monster monster;
+        switch (i){
+            case 0:
+                monster = new Dragon(lines.get(i2).split("\\s+"));break;
+            case 1:
+                monster = new Exoskeleton(lines.get(i2).split("\\s+"));break;
+            default:
+                monster = new Spirits(lines.get(i2).split("\\s+"));break;
+        }
+        if(level>monster.getInitLevel())
+            monster.levelUpTo(level);
         return monster;
     }
 

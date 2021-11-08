@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+//the entity of potion
 public class Potion extends Merchandise {
     public Potion(){}
 
@@ -10,6 +11,7 @@ public class Potion extends Merchandise {
         setAttributes(attributes);
     }
 
+    //get the lines to display the potion info
     public ArrayList<StringBuilder> getDisplayLines(){
         ArrayList<StringBuilder> attributes = new ArrayList<>();
 
